@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.openqa.selenium.By;
+
 import com.saucelabs.context.TestContext;
 
 public class Navigation {
@@ -39,6 +41,10 @@ public class Navigation {
 
 	public void pageTitleIsCorrect() {
 		this.testContext.getWebDriver().getTitle().contains(MAP_TITLES.get(this.destination));
+	}
+
+	public void clickFirstLink() {
+		this.testContext.getWebDriver().findElement(By.tagName("a"));
 	}
 
 }

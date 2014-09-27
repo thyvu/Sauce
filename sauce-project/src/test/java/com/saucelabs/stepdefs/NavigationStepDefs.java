@@ -23,4 +23,9 @@ public class NavigationStepDefs {
 	public void i_see_the_right_title() throws Throwable {
 	    this.navigation.pageTitleIsCorrect();
 	}
+	
+	@When("^I click on the first link$")
+	public void i_click_on_the_first_link() throws Throwable {
+	    this.navigation.clickFirstLink();
+	}
 }

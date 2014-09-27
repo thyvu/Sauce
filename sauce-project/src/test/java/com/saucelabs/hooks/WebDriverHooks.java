@@ -1,18 +1,12 @@
 package com.saucelabs.hooks;
 
-import java.net.URL;
-import java.util.LinkedList;
-
 import org.junit.Rule;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.context.TestContext;
-import com.saucelabs.junit.ConcurrentParameterized;
 import com.saucelabs.junit.SauceOnDemandTestWatcher;
 import com.saucelabs.selenium.client.factory.SeleniumFactory;
 
@@ -65,11 +59,6 @@ public class WebDriverHooks implements SauceOnDemandSessionIdProvider {
 		}
 
 		else {
-			DesiredCapabilities capabilities = new DesiredCapabilities();
-			capabilities.setCapability(CapabilityType.BROWSER_NAME, System.getProperty("webDriver.browser"));
-			capabilities.setCapability(CapabilityType.VERSION, System.getProperty("webDriver.version"));
-			capabilities.setCapability(CapabilityType.PLATFORM, System.getProperty("webDriver.os"));
-			capabilities.setCapability("name", "Sauce Sample Test");
 			this.testContext.setWebDriver(SeleniumFactory.createWebDriver());
 			this.sessionId = (((RemoteWebDriver) this.testContext.getWebDriver()).getSessionId()).toString();
 		}
@@ -78,6 +67,7 @@ public class WebDriverHooks implements SauceOnDemandSessionIdProvider {
 	@After
 	public void after() {
 		this.testContext.getWebDriver().close();
+		this.testContext.getWebDriver().quit();
 	}
 
 	/**
