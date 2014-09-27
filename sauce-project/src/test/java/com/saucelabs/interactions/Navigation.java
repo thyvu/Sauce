@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 
 import com.saucelabs.context.TestContext;
@@ -20,7 +21,7 @@ public class Navigation {
 	private static final Map<String, String> MAP_TITLES;
 	static {
 		final HashMap<String, String> temp = new HashMap<String, String>();
-		temp.put("amazon", "http://www.amazon.com");
+		temp.put("amazon", "Amazon");
 		temp.put("ebay", "http://www.ebay.com");
 		MAP_TITLES = Collections.unmodifiableMap(temp);
 	}
@@ -40,7 +41,7 @@ public class Navigation {
 	}
 
 	public void pageTitleIsCorrect() {
-		this.testContext.getWebDriver().getTitle().contains(MAP_TITLES.get(this.destination));
+		Assert.assertTrue(this.testContext.getWebDriver().getTitle().contains(MAP_TITLES.get(this.destination)));
 	}
 
 	public void clickFirstLink() {
